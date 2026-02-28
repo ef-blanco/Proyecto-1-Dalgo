@@ -98,6 +98,28 @@ public class ProblemaP1
     }
 
     //TODO: Implementar método que cambie el formato del texto: Ej. Hello world -> 0000100000
+    public static int[][] convertirAMatriz(List<String> lineas, int ancho)
+    {
+        int numeroLineas = lineas.size();
+        int[][] matriz = new int[numeroLineas][ancho];
+
+        for (int fila = 0; fila < numeroLineas; fila++)
+        {
+            String linea = lineas.get(fila);
+            for (int col = 0; col < linea.length(); col++)
+            {
+                if (linea.charAt(col) == ' ')
+                    matriz[fila][col] = 1;  // espacio = 1
+                else
+                    matriz[fila][col] = 0;  // letra   = 0
+            }
+            // EJEMPLO: "Holis" =[0,0,0,0,0]
+            //EJEMPLO2: "Holis profe" = [0,0,0,0,0,1,0,0,0,0,0]
+            // Las columnas después del fin de la línea entonces quedan en 0 (relleno) pues no pertenecen a un rio
+        }
+
+        return matriz;
+    }
 
 
     //Función de programación dinámica que encuentra los rios más largos
