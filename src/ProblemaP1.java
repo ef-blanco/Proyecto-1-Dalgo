@@ -3,7 +3,7 @@ import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Main 
+public class ProblemaP1 
 {
     public static void main(String[] args) throws Exception 
     {
@@ -37,4 +37,17 @@ public class Main
 
 
     //TODO: Implementar método que cambie el formato del texto: Ej. Hello world -> 0000100000
+
+
+    //Función de programación dinámica que encuentra los rios más largos
+
+    public int rioMasLargo(int[][] cadena)
+    {
+        int resp = 0;
+        int[][] matrizRios = new int[cadena.length][cadena[0].length];
+
+        return resp;
+
+    }
+
 }
