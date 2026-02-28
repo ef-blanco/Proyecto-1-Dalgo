@@ -62,8 +62,40 @@ public class ProblemaP1
 
         return new int[]{mejorAncho, mejorRio};
     }
-    //TODO: Implementar método que ajusta el texto a un ancho
 
+    //TODO: Implementar método que ajusta el texto a un ancho
+    //Ajuste del texto con Word Wrap greedy pues distribuimos las palabras en lineas sin superar el ancho que se dio
+    public static List<String> ajustarTexto(String[] palabras, int ancho)
+    {
+        List<String> lineas = new ArrayList<>();
+        StringBuilder lineaActual = new StringBuilder();
+
+        for (String palabra : palabras)
+        {
+            if (lineaActual.length() == 0)
+            {
+                // Primera palabra de la línea siempre va a entra (garantizado por anchoMinimo)
+                lineaActual.append(palabra);
+            }
+            else if (lineaActual.length() + 1 + palabra.length() <= ancho)
+            {
+                // La palabra cabe en la línea actual (con el espacio separador)
+                lineaActual.append(" ").append(palabra);
+            }
+            else
+            {
+                // Si de lo contrario no cabe, guardamos la línea actual y empezamos una nueva
+                lineas.add(lineaActual.toString());
+                lineaActual = new StringBuilder(palabra);
+            }
+        }
+
+        // Y claro, no olvidamos la última línea
+        if (lineaActual.length() > 0)
+            lineas.add(lineaActual.toString());
+
+        return lineas;
+    }
 
     //TODO: Implementar método que cambie el formato del texto: Ej. Hello world -> 0000100000
 
