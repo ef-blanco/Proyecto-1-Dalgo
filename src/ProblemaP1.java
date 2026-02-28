@@ -32,7 +32,36 @@ public class ProblemaP1
      * con cada ancho
      */
     
-    
+     public static int[] resolverCaso(String texto)
+    {
+        String[] palabras = texto.split(" ");
+        // Sabemos que el ancho mínimo es el de la palabra más larga
+        int anchoMinimo = 0;
+        for (String palabra : palabras)
+            if (palabra.length() > anchoMinimo) anchoMinimo = palabra.length();
+        // El ancho máximo que se puede tener es meter todo en una sola línea
+        int anchoMaximo = texto.length();
+        int mejorRio   = 0;
+        int mejorAncho = anchoMinimo;
+        // Probamos cada ancho desde el mínimo hasta el máximo (W, W+1, w+2 y asi)
+        for (int ancho = anchoMinimo; ancho <= anchoMaximo; ancho++){
+            // Parte 1 seria ajustar el texto al ancho actual
+            List<String> lineas = ajustarTexto(palabras, ancho);
+            // Tendria una terminacion temprana si ya hay menos líneas que el mejor río encontrado, con anchos mayores habria entonces aún menos líneas, lo cual seria imposible mejorar.
+            if (lineas.size() <= Math.max(1, mejorRio))
+                break;
+            // Como sehunda parte convertiriamos las líneas a una matriz de 0s y 1s
+            int[][] matrizCeros1s = convertirAMatriz(lineas, ancho);
+            // Parte 3, ahora encontrariamos el río más largo con programación dinámica
+            int rioActual = rioMasLargo(matrizCeros1s);
+            // Guardamos en este caso solo si mejora (así conservamos el ancho MÁS PEQUEÑO)
+            if (rioActual > mejorRio)
+            {
+                mejorRio   = rioActual; mejorAncho = ancho;}
+        }
+
+        return new int[]{mejorAncho, mejorRio};
+    }
     //TODO: Implementar método que ajusta el texto a un ancho
 
 
