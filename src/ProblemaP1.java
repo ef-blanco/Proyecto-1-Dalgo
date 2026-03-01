@@ -6,6 +6,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * @author Emmanuel Blanco Corredor - 202312743
+ * @author Juan David Guzmán - 202320890
+ */
+
 public class ProblemaP1 
 {
     public static void main(String[] args) throws Exception
