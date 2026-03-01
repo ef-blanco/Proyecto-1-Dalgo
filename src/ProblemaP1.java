@@ -5,25 +5,18 @@ import java.util.List;
 
 public class ProblemaP1 
 {
-    public static void main(String[] args) throws Exception 
+    public static void main(String[] args) throws Exception
     {
-        try(FileReader freader = new FileReader(args[0]);
-            BufferedReader bf = new BufferedReader(freader))
-            {
-                int numCasos = Integer.parseInt(bf.readLine());
+        BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
 
-                List<String> entradas = new ArrayList<String>();
+        int numeroCasos = Integer.parseInt(lector.readLine().trim());
 
-                for(int i = 0; i<numCasos;i++)
-                {
-                    String texto = bf.readLine();
-                    entradas.add(texto);
-                }
-
-                System.out.println(entradas);
-
-                //Aquí luego se debe correr todo con cada entrada
-            }
+        for (int c = 0; c < numeroCasos; c++)
+        {
+            String texto = lector.readLine();
+            int[] resultado = resolverCaso(texto);
+            System.out.println(resultado[0] + " " + resultado[1]);
+        }
     }
 
     /**
