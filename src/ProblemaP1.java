@@ -119,6 +119,19 @@ public class ProblemaP1
 
     public int rioMasLargo(int[][] cadena)
     {
+        """int numFilas  = cadena.length;
+        int numCols   = cadena[0].length;
+        int rioMaximo = 0;
+
+        int[][] dp = new int[numFilas][numCols];
+        for (int col = 0; col < numCols - 1; col++)
+        {
+            if (cadena[0][col] == 1)
+            {
+                dp[0][col] = 1;
+                rioMaximo  = 1;
+            }
+        }"""
         int resp = 0;
         int[][] matrizRios = new int[cadena.length][cadena[0].length];
 
