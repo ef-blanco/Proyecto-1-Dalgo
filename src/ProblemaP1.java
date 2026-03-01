@@ -39,12 +39,6 @@ public class ProblemaP1
             }
     }
 
-    /**
-     * TODO: Implementar la función que itere con los anchos y llame a la función
-     * de programación dinámica en EncuentraRios para encontrar el rio más largo
-     * con cada ancho
-     */
-    
      public static int[] resolverCaso(String texto)
     {
         String[] palabras = texto.split(" ");
@@ -76,7 +70,6 @@ public class ProblemaP1
         return new int[]{mejorAncho, mejorRio};
     }
 
-    //TODO: Implementar método que ajusta el texto a un ancho
     //Ajuste del texto con Word Wrap greedy pues distribuimos las palabras en lineas sin superar el ancho que se dio
     public static List<String> ajustarTexto(String[] palabras, int ancho)
     {
@@ -109,8 +102,7 @@ public class ProblemaP1
 
         return lineas;
     }
-
-    //TODO: Implementar método que cambie el formato del texto: Ej. Hello world -> 0000100000
+    
     public static int[][] convertirAMatriz(List<String> lineas, int ancho)
     {
         int numeroLineas = lineas.size();
