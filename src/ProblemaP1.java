@@ -1,5 +1,7 @@
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -8,16 +10,28 @@ public class ProblemaP1
 {
     public static void main(String[] args) throws Exception
     {
-        BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
+        try(FileReader freader = new FileReader(args[0]);
+            BufferedReader bf = new BufferedReader(freader))
+            {
+                int numCasos = Integer.parseInt(bf.readLine());
 
-        int numeroCasos = Integer.parseInt(lector.readLine().trim());
+                List<String> entradas = new ArrayList<String>();
 
-        for (int c = 0; c < numeroCasos; c++)
-        {
-            String texto = lector.readLine();
-            int[] resultado = resolverCaso(texto);
-            System.out.println(resultado[0] + " " + resultado[1]);
-        }
+                for(int i = 0; i<numCasos;i++)
+                {
+                    String texto = bf.readLine();
+                    entradas.add(texto);
+                }
+
+                BufferedWriter writer = new BufferedWriter(new FileWriter(args[1]));
+                for(String entrada:entradas)
+                {
+                    int[] respuesta = resolverCaso(entrada);
+                    writer.write(((Integer)respuesta[0]).toString() + " " + ((Integer)respuesta[1]).toString());
+                    writer.newLine();
+                }
+                writer.close();
+            }
     }
 
     /**
@@ -120,19 +134,7 @@ public class ProblemaP1
 
     static public int rioMasLargo(int[][] cadena)
     {
-        """int numFilas  = cadena.length;
-        int numCols   = cadena[0].length;
-        int rioMaximo = 0;
-
-        int[][] dp = new int[numFilas][numCols];
-        for (int col = 0; col < numCols - 1; col++)
-        {
-            if (cadena[0][col] == 1)
-            {
-                dp[0][col] = 1;
-                rioMaximo  = 1;
-            }
-        }"""
+        
         int resp = 0;
         int a = cadena[0].length;
         int n = cadena.length;
@@ -145,7 +147,7 @@ public class ProblemaP1
 
         int i = 0;
         int j = 0;
-        while(i<cadena.length)
+        while(i<=n)
         {
             //CASO 1
             if((i==0)||(j==0)||(j==a-1))
