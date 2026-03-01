@@ -1,6 +1,7 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class ProblemaP1 
@@ -41,10 +42,56 @@ public class ProblemaP1
 
     //Función de programación dinámica que encuentra los rios más largos
 
-    public int rioMasLargo(int[][] cadena)
+    static public int rioMasLargo(int[][] cadena)
     {
         int resp = 0;
-        int[][] matrizRios = new int[cadena.length][cadena[0].length];
+        int a = cadena[0].length;
+        int n = cadena.length;
+        int[][] m = new int[n+1][a];
+
+        for(int[] fila:m)
+        {
+            Arrays.fill(fila,0);
+        }
+
+        int i = 0;
+        int j = 0;
+        while(i<cadena.length)
+        {
+            //CASO 1
+            if((i==0)||(j==0)||(j==a-1))
+            {
+                m[i][j] = 0;
+            }
+            //CASO 2
+            else if((i==1)&&((0<j)&&(j<a-1)))
+            {
+                m[i][j] = cadena[n-1][j]*(1-Math.max(cadena[n-1][j-1],cadena[n-1][j+1]));
+            }
+            //CASO 3
+            else if((i>1)&&((0<j)&&(j<a-1)))
+            {
+                m[i][j] = cadena[n-i][j]*(1-Math.max(cadena[n-i][j-1],cadena[n-i][j+1]))*(1+(Math.max(Math.max(m[i-1][j],m[i-1][j-1]),Math.max(m[i-1][j-1],m[i-1][j+1]))));
+            }
+
+            //Vamos verificando si alcanzamos el rio de longitud max
+            if(m[i][j]>=resp)
+            {
+                resp = m[i][j];
+            }
+
+            //Esta parte es para iterar con j sin la necesidad de otro ciclo (No resta complejidad)
+            if(j<a-1)
+            {
+                j++;
+            }
+            else if(j==a-1)
+            {
+                j = 0;
+                i++;
+            }
+
+        }
 
         return resp;
 
