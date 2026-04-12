@@ -11,8 +11,7 @@ import java.util.Queue;
 
 public class ProblemaP2 
 {
-    // Ejemplo de como debe ser el main
-    //TODO: Juan David encárgate de esta parte para que no la vuelva a embarrar 😔 
+    // Método main
     public static void main(String[] args) throws Exception {
 		ProblemaP2 instancia = new ProblemaP2();
 		try ( 
@@ -93,7 +92,7 @@ public class ProblemaP2
 		int c1 = 0;
 		Queue<Integer> q = new LinkedList<>();
 
-		// Ahora aunquw el grafo original de prueba indica ser conexo, este bucle atiende pues componentes
+		// Ahora aunque el grafo original de prueba indica ser conexo, este bucle atiende pues componentes
 		for (int start = 0; start < v; start++) {
 			if (color[start] != -1) continue;
 			color[start] = 0;
@@ -120,8 +119,8 @@ public class ProblemaP2
         return Math.abs(c0 - c1);
 	}
 
-	//ahora pues toca crear función de DP por subSet - Sum que minimiza la particion de los pesos
-	// osea lit dado un arreglo diffs = [d1, d2, ..., dn], calculamos pues min |sum(+-di)| usando subset sum 
+	// Ahora pues toca crear función de DP por subSet - Sum que minimiza la particion de los pesos
+	// Es decir dado un arreglo diffs = [d1, d2, ..., dn], calculamos min |sum(+-di)| usando subset sum con optimizaciones
 
 	public int minimumDifferential(int[] diffs) {
 		int total = 0;
