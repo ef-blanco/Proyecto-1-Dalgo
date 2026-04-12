@@ -64,6 +64,8 @@ public class ProblemaP2
 
 
     //Función para calcular el diferencial de tamanio de la biparticion de un componente conexo con param data que es lit una lista plana con un retorno del diferencial del componente de forma absoluta
+
+	//componente conexo de tipo (c0 - c1)
 	public int bipartitionDifference(int[] data) {
 		int v = data[0];
 		int e = data[1];
@@ -117,4 +119,36 @@ public class ProblemaP2
         }
         return Math.abs(c0 - c1);
 	}
+
+	//ahora pues toca crear función de DP por subSet - Sum que minimiza la particion de los pesos
+	// osea lit dado un arreglo diffs = [d1, d2, ..., dn], calculamos pues min |sum(+-di)| usando subset sum 
+
+	public int minimumDifferential(int[] diffs) {
+		int total = 0;
+		for (int d : diffs) total += d;
+
+		int half = total / 2;
+		boolean[] dp = new boolean[half + 1];
+		dp[0] = true;
+
+		for (int d : diffs) {
+			if (d == 0) continue;
+			for (int j = half; j >= d; j--) {
+				if (dp[j - d]) {
+					dp[j] = true;
+				}
+			}
+		}
+
+		int bestSubsetSum = 0;
+		for (int j = half; j >= 0; j--) {
+			if (dp[j]) {
+				bestSubsetSum = j;
+				break;
+			}
+		}
+
+		return total - 2 * bestSubsetSum;
+	}
 }
+
