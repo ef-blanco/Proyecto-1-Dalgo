@@ -63,7 +63,7 @@ public class ProblemaP2
 
 
 
-    //Función para calcular el diferencial de tamaño de la bipartición de un componente conexo con param data que es lit una lista plana con un retorno del diferencial del componente de forma absoluta
+    //Función para calcular el diferencial de tamanio de la biparticion de un componente conexo con param data que es lit una lista plana con un retorno del diferencial del componente de forma absoluta
 	public int bipartitionDifference(int[] data) {
 		int v = data[0];
 		int e = data[1];
