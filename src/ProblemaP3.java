@@ -11,7 +11,7 @@ public class ProblemaP3 {
     /** Numero de cadenas.*/
     static int n;
 
-    /** Cadenas de entrada que se encuentranordenadas por longitud ascendente. */
+    /** Cadenas de entrada que se encuentran ordenadas por longitud ascendente. */
     static String[] strs;
 
     /** En este caso son las longitudes de cada cadena. */
@@ -72,7 +72,7 @@ public class ProblemaP3 {
             int[] initState = new int[n];
             int lcsLen = dfsLen(initState);
             String lcs = reconstruct(initState, lcsLen);
-            out.append(lcs).append("*\n");
+            out.append(lcs).append("\n");
         }
 
         System.out.print(out);
